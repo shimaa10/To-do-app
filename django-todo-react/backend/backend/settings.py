@@ -37,10 +37,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'todo' # add this
+    'corsheaders',          
+    'rest_framework',         
+    'todo' 
   ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -81,6 +84,11 @@ DATABASES = {
     }
 }
 
+# we whitelist localhost:3000 because that's where frontend will be served
+
+CORS_ORIGIN_WHITELIST = (
+    'http://localhost:3000',
+)
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
